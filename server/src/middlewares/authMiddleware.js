@@ -1,31 +1,43 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-exports.authToken = (req, res, next) => {
-    try {
-        const header = req.headers.authorization;
-        let token = header && header.replace("Bearer ", "");
+exports.authToken = async (req, res, next) => {
+    
 
-        if (!token) {
+    try {
+
+        // const authHeader = req.headers['authorization'];
+        // const token = authHeader && authHeader.split(' ')[1];
+        // if(token == null){
+        //     //return res.status(401)
+        //     res.status(400).send({
+        //         status: "failed",
+        //         message: "Something went wrong"
+        //     })
+        // }
+
+        let header = req.header("Authorization");
+
+        let token = header.replace("Bearer ", "");
+
+        if (!header || !token) {
             return res.send({
                 status: "Failed",
                 message: "Access Denied"
             })
         };
 
-        const secretKey = process.env.JWT_SECRET;
+        const verified = jwt.verify(token, process.env.JWT_SECRET);
 
-        let verified = jwt.verify(token, secretKey);
-
-        req.UserId = verified.id;
+        req.userId = verified.id;
 
         next();
-
+        
     } catch (error) {
         console.log(error);
-        res.status(500).send({
+        res.status(400).send({
             status: "failed",
-            message: "server error"
+            message: "Something went wrong"
         })
     }
 }

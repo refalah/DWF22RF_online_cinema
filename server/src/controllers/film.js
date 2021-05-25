@@ -37,3 +37,64 @@ exports.createFilm = async (req, res) => {
         })
     }
 }
+
+exports.getFilms = async (req, res) => {
+    try {
+       
+        const path = process.env.PATH_KEY;
+        //const thumbnail = req.files.imageFile[0].filename;
+
+        let films = await Film.findAll({
+          attributes: {
+            exclude: ["createdAt", "updatedAt"]
+          }
+        });
+
+        films = JSON.parse(JSON.stringify(films));
+        films = films.map((film) => {
+          return {
+            ...film,
+            image_url: process.env.PATH_KEY + film.thumbnail,
+          };
+        });
+        
+        //console.log(funds)
+          
+        res.send({
+          status: "success",
+          data: {
+            films
+          }
+      });
+    }catch (error) {
+        console.log(error)
+        res.send({
+            status: "failed",
+            message: "something went wrong"
+        })
+    }
+}
+
+exports.filmDetails = async (req, res) => {
+    const {id} = req.params;
+
+    try {
+        let film = await Film.findOne({where: {id}});
+
+        film = JSON.parse(JSON.stringify(film));   
+      
+          
+        res.send({
+          status: "success",
+          data: {
+            film
+          }
+        });
+    } catch (error) {
+        console.log(error)
+        res.send({
+            status: "failed",
+            message: "something went wrong"
+        })
+    }
+}

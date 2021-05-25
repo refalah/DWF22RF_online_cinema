@@ -16,7 +16,9 @@ const { profile } = require('../controllers/user');
 // router.get("/users", authToken, getUsers);
 router.get("/profile", authToken, profile);
 
-const { createFilm } = require('../controllers/film');
-router.post("/film", uploadFile("imageFile"), createFilm)
+const { createFilm, getFilms, filmDetails } = require('../controllers/film');
+router.post("/film", uploadFile("imageFile"), createFilm);
+router.get("/films", getFilms);
+router.get("/film/:id", filmDetails);
 
 module.exports = router;

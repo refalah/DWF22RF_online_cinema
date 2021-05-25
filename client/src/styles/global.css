@@ -186,7 +186,7 @@ body {
 
 /* Style The Dropdown Button */
 .dropbtn {
-    background-color: #4CAF50;
+    background-color: #CD2E71;
     color: white;
     padding: 16px;
     font-size: 16px;
@@ -229,5 +229,43 @@ body {
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-  }
+    background-color: #9e2658;
+}
+
+/* Cards */
+
+.cards {
+    width: 290px;
+    height: 476px;
+    overflow: hidden;
+    transition: 0.3s;
+    background: white;
+}
+
+.cards:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.card-image-container img{
+    overflow: hidden;
+    object-fit: cover;
+    width: 290px;
+    height: 476px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.col {    
+    margin-bottom: 5%;
+}
+
+.film-header {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}

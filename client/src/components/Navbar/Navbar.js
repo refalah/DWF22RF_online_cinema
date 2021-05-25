@@ -52,7 +52,7 @@ function Navbar() {
         loadUser();
     }, []);
 
-    console.log(user)
+    console.log(user.id)
 
     return (
         <>
@@ -64,6 +64,8 @@ function Navbar() {
                     <ul className="nav-menu">
                     {!state.isLogin ? ( 
                             <>
+
+                            
                             <li className="nav-item">
                                 <div className='nav-links' onClick={handleOpenLogin}>Login</div>
                                 <ModalLogin open={state.isVisibleLogin} onClose={handleCloseLogin}></ModalLogin>
@@ -80,10 +82,14 @@ function Navbar() {
                                 display:'flex'
                             }}>
 
+                            <li className="nav-item">
+                                <div className='nav-links' onClick={() => router.push('/film-list')}>All Films</div>
+                            </li>
+
                             <div class="dropdown">
                               <button class="dropbtn">Dropdown</button>
                               <div class="dropdown-content">
-                                {user.email == "jesse@preacher.com" ? (
+                                {/* {user.id == '1' ? (
                                     <>
                                         <a href="#">Add Film</a>
                                         <a href="#" onClick={handleLogout}>Logout</a>
@@ -95,10 +101,12 @@ function Navbar() {
                                         <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
                                         <a href="#" onClick={handleLogout}>Logout</a>
                                     </>
-                                )}
-                                {/* <a href="#">Profile</a>
-                                <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
-                                <a href="#" onClick={handleLogout}>Logout</a> */}
+                                )} */}
+                               
+                                        <a href="#">Profile</a>
+                                        <a href="#" onClick={() => router.push('/add-film')}>Add Film</a>
+                                        <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
+                                        <a href="#" onClick={handleLogout}>Logout</a>
                               </div>
                             </div>
                                 

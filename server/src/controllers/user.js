@@ -1,7 +1,7 @@
 const {User, Donate, Film} = require('../../models');
 
 exports.profile = async (req, res) => {
-    const id = req.UserId;
+    const id = req.userId;
     console.log(id)
     try {
         let users = await User.findOne({where: {id},
@@ -23,11 +23,11 @@ exports.profile = async (req, res) => {
         });
 
         users = JSON.parse(JSON.stringify(users));
-        users = [users].map((user) => {
-          return {
-            ...user
-          }
-        })
+        // users = [users].map((user) => {
+        //   return {
+        //     ...user
+        //   }
+        // })
 
         console.log(users);
         
