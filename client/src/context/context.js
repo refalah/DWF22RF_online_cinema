@@ -33,6 +33,16 @@ const reducer = (state, action) => {
                 ...state,
                 isVisibleRegister: false
             };
+        // case "LOGIN":
+        //     return {
+        //         ...state,
+        //         isLogin: true
+        //     };
+        // case "LOGOUT":
+        //     return {
+        //         ...state,
+        //         isLogin: false
+        //     };
         case "USER_SUCCESS":
         case "LOGIN_SUCCESS":
             localStorage.setItem("token", payload.token);

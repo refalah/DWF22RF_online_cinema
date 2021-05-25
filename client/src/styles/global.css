@@ -9,6 +9,11 @@
 
 body {
     background-color: black;
+    color: whitesmoke;
+}
+
+.container {
+    padding: 0 8%;
 }
 
 .navbar {
@@ -113,7 +118,8 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: whitesmoke;
+    background-color: #0D0D0D, 100%;
+    color: white;
     width: 416px;
     height: 350px;
     z-index: 1000;

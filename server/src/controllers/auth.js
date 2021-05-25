@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 require('dotenv').config();
+//const dotenv = require('dotenv');
+// dotenv.config({path: '../../.env'});
 
 exports.register = async (req, res) => {
 

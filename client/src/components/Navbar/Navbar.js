@@ -1,9 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Context } from '../../context/context';
+import { API } from '../../config/api';
 import ModalLogin from '../Modal/ModalLogin';
 import ModalRegister from '../Modal/ModalRegister';
-import { NavDropdown } from "react-bootstrap";
 
 function Navbar() {
     const [ state, ] = useContext(Context)
@@ -35,6 +35,24 @@ function Navbar() {
         })
     }
 
+    const router = useHistory();
+
+    const [user, setUser] = useState([]);
+
+    const loadUser = async () => {
+        try {
+            const response = await API.get(`/profile`);
+            setUser(response.data.data.users);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
+    console.log(user)
 
     return (
         <>
@@ -65,9 +83,22 @@ function Navbar() {
                             <div class="dropdown">
                               <button class="dropbtn">Dropdown</button>
                               <div class="dropdown-content">
-                                <a href="#">Link 1</a>
-                                <a href="#">Link 2</a>
-                                <a href="#">Link 3</a>
+                                {user.email == "jesse@preacher.com" ? (
+                                    <>
+                                        <a href="#">Add Film</a>
+                                        <a href="#" onClick={handleLogout}>Logout</a>
+                                    </>
+                                ) : (
+                                    <>
+                                        <a href="#">Profile</a>
+                                        <a href="#" onClick={() => router.push('/add-film')}>Add Film</a>
+                                        <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
+                                        <a href="#" onClick={handleLogout}>Logout</a>
+                                    </>
+                                )}
+                                {/* <a href="#">Profile</a>
+                                <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
+                                <a href="#" onClick={handleLogout}>Logout</a> */}
                               </div>
                             </div>
                                 
