@@ -103,7 +103,7 @@ function Navbar() {
                                     </>
                                 )} */}
                                
-                                        <a href="#">Profile</a>
+                                        <a href="#" onClick={() => router.push('/profile')}>Profile</a>
                                         <a href="#" onClick={() => router.push('/add-film')}>Add Film</a>
                                         <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
                                         <a href="#" onClick={handleLogout}>Logout</a>

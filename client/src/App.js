@@ -9,6 +9,7 @@ import Home from './pages/Home/Home';
 import FilmList from './pages/FilmList/FilmList';
 import AddFilm from './pages/AddFilm/AddFilm';
 import FilmDetails from './pages/FilmDetails/FilmDetails';
+import Profile from './pages/Profile/Profile';
 
 
 
@@ -23,6 +24,7 @@ function App() {
           <PrivateRoute path='/film-list' exact component={FilmList}></PrivateRoute>
           <PrivateRoute path='/add-film' exact component={AddFilm}></PrivateRoute>
           <PrivateRoute path='/film/:id' exact component={FilmDetails}></PrivateRoute>
+          <PrivateRoute path='/profile' exact component={Profile}></PrivateRoute>
         </Switch>
       </Router>
     </ContextProvider>

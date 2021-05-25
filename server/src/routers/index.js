@@ -22,7 +22,8 @@ router.post("/film", uploadFile("imageFile"), createFilm);
 router.get("/films", getFilms);
 router.get("/film/:id", filmDetails);
 
-const { createTransaction } = require('../controllers/transaction');
+const { createTransaction, getUserTransactions } = require('../controllers/transaction');
 router.post("/buy/:id2", uploadFile("imageFile"),  authToken, createTransaction);
+router.get("/user-purchase", authToken, getUserTransactions);
 
 module.exports = router;
