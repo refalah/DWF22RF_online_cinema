@@ -17,8 +17,12 @@ const { profile } = require('../controllers/user');
 router.get("/profile", authToken, profile);
 
 const { createFilm, getFilms, filmDetails } = require('../controllers/film');
+
 router.post("/film", uploadFile("imageFile"), createFilm);
 router.get("/films", getFilms);
 router.get("/film/:id", filmDetails);
+
+const { createTransaction } = require('../controllers/transaction');
+router.post("/buy/:id2", uploadFile("imageFile"),  authToken, createTransaction);
 
 module.exports = router;

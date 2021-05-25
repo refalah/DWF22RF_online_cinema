@@ -2,7 +2,7 @@ const {User, Donate, Film} = require('../../models');
 
 exports.profile = async (req, res) => {
     const id = req.userId;
-    console.log(id)
+    //console.log(id)
     try {
         let users = await User.findOne({where: {id},
           include: [
