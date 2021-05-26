@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { Context } from '../../context/context';
 import ModalLogin from '../Modal/ModalLogin';
 
