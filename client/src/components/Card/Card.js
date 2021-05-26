@@ -1,8 +1,12 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, {useState, useContext} from 'react'
+import { Link, useHistory } from 'react-router-dom';
+import { Context } from '../../context/context';
+import ModalLogin from '../Modal/ModalLogin';
 
 function Card({film}) {
     const {id, image_url} = film;
+    const [ state, ] = useContext(Context)
+    const [isOpen, setIsOpen] = useState(false)
 
     const router = useHistory();
 
@@ -13,9 +17,17 @@ function Card({film}) {
     return (
         <div>
            <div className='cards mb-5'>
-                <div className='card-image-container' onClick={goToPage}>
-                    <img src={image_url} className='img-dono'></img>
-                </div>
+                {!state.isLogin ? (
+                    <div className='card-image-container' onClick={() => {setIsOpen(true)}}>
+                        <img src={image_url} className='img-dono'></img>
+                        <ModalLogin open={isOpen} onClose={() => setIsOpen(false)}></ModalLogin>
+                    </div>
+                ) : (
+                    <div className='card-image-container' onClick={goToPage}>
+                        <img src={image_url} className='img-dono'></img>
+                    </div>
+                )}
+               
                 
         </div> 
         </div>

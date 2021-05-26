@@ -106,7 +106,7 @@ function Navbar() {
                                         <a href="#" onClick={() => router.push('/profile')}>Profile</a>
                                         <a href="#" onClick={() => router.push('/add-film')}>Add Film</a>
                                         <a href="#" onClick={() => router.push('/home-transaction')}>Transactions</a>
-                                        <a href="#" onClick={() => router.push('/film-list')}>My Film List</a>
+                                        <a href="#" onClick={() => router.push('/my-films')}>My Film List</a>
                                         <a href="#" onClick={handleLogout}>Logout</a>
                               </div>
                             </div>

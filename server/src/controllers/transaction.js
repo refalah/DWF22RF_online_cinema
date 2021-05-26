@@ -72,6 +72,58 @@ exports.getUserTransactions = async (req, res) => {
     }
 }
 
+exports.getMyFilms = async (req, res) => {
+  
+  const id = req.userId;
+
+  try {
+  
+  let purchases = await transaction.findAll({where: {userId : id, status: "Approved"},
+      include: [
+        {
+          model: User,
+          attributes: {
+            exclude: ["createdAt", "updatedAt", "password"]
+          }
+        },
+        
+        {
+          model: Film,
+          attributes: {
+            exclude: ["createdAt", "updatedAt"]
+          }
+        }
+      ],
+    
+  });
+
+    purchases = JSON.parse(JSON.stringify(purchases));
+    purchases = purchases.map((purchase) => {
+      return {
+        ...purchase,
+        image_url: process.env.PATH_KEY + purchase.proofAttachment
+      };
+    });
+    
+    console.log(purchases)
+
+    res.send({
+      status: "success",
+      data: {
+        purchases
+      }
+  });
+
+
+  } catch (error) {
+      console.log(error);
+      res.send({
+          status: "failed",
+          message: "server error"
+      })
+  }
+}
+
 exports.getTransactions = async (req, res) => {
   try {
     let purchases = await transaction.findAll({

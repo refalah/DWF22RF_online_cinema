@@ -11,6 +11,7 @@ import AddFilm from './pages/AddFilm/AddFilm';
 import FilmDetails from './pages/FilmDetails/FilmDetails';
 import Profile from './pages/Profile/Profile';
 import HomeTransaction from './pages/HomeTransaction/HomeTransaction';
+import MyFilms from './pages/MyFilms/MyFilms';
 
 
 
@@ -26,6 +27,7 @@ function App() {
           <PrivateRoute path='/add-film' exact component={AddFilm}></PrivateRoute>
           <PrivateRoute path='/film/:id' exact component={FilmDetails}></PrivateRoute>
           <PrivateRoute path='/profile' exact component={Profile}></PrivateRoute>
+          <PrivateRoute path='/my-films' exact component={MyFilms}></PrivateRoute>
           <PrivateRoute path='/home-transaction' exact component={HomeTransaction}></PrivateRoute>
         </Switch>
       </Router>
