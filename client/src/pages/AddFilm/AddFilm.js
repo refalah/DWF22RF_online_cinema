@@ -47,7 +47,7 @@ function AddFilm() {
             if(response.data.status === "failed"){
                 router.push('/add-film')
             } else {
-                router.push("/add-film");
+                router.push("/home-transaction");
             }
 
             

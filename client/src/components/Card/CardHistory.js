@@ -18,7 +18,7 @@ function CardHistory({userData}) {
                         <p>{newFormDate}</p>
                     </div>
                     <div className='history-status'>
-                        <p>{accNumber&&accNumber}</p>
+                        <p>{userData.Film.price&&userData.Film.price}</p>
                         {status == "Pending" ? (
                             <div className='status-card' style={{
                                 background: "#F6FF72",
