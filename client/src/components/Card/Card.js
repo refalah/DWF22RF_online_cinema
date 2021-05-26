@@ -18,8 +18,8 @@ function Card({film}) {
         <div>
            <div className='cards mb-5'>
                 {!state.isLogin ? (
-                    <div className='card-image-container' onClick={() => {setIsOpen(true)}}>
-                        <img src={image_url} className='img-dono'></img>
+                    <div className='card-image-container'>
+                        <img src={image_url} className='img-dono'  onClick={() => {setIsOpen(true)}}></img>
                         <ModalLogin open={isOpen} onClose={() => setIsOpen(false)}></ModalLogin>
                     </div>
                 ) : (
