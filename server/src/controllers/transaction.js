@@ -101,7 +101,8 @@ exports.getMyFilms = async (req, res) => {
     purchases = purchases.map((purchase) => {
       return {
         ...purchase,
-        image_url: process.env.PATH_KEY + purchase.proofAttachment
+        image_url: process.env.PATH_KEY + purchase.proofAttachment,
+        image_film: process.env.PATH_KEY + purchase.Film.thumbnail
       };
     });
     

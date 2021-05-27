@@ -3,33 +3,43 @@ import { useHistory } from 'react-router-dom';
 import { Context } from '../../context/context';
 import ModalLogin from '../Modal/ModalLogin';
 
-function Card({film}) {
-    const {id, image_url} = film;
+function Card({film, approve}) {
+    //const {id, image_url} = film;
     const [ state, ] = useContext(Context)
     const [isOpen, setIsOpen] = useState(false)
-
+    
     const router = useHistory();
+    //console.log(approve.Film)
 
     const goToPage = () => {
-        router.push(`/film/${id}`);
+        //router.push(`/film/${id}`);
     };
 
     return (
         <div>
-           <div className='cards mb-5'>
+            {film&&film ? (
+                <div className='cards mb-5'>
                 {!state.isLogin ? (
                     <div className='card-image-container'>
-                        <img src={image_url} className='img-dono'  onClick={() => {setIsOpen(true)}}></img>
+                        <img src={film&&film.image_url} className='img-dono'  onClick={() => {setIsOpen(true)}}></img>
                         <ModalLogin open={isOpen} onClose={() => setIsOpen(false)}></ModalLogin>
                     </div>
                 ) : (
                     <div className='card-image-container' onClick={goToPage}>
-                        <img src={image_url} className='img-dono'></img>
+                        <img src={film&&film.image_url} className='img-dono'></img>
                     </div>
-                )}
-               
+                )}              
                 
-        </div> 
+            </div> 
+            ) : (
+                
+                <div className='cards mb-5'>
+                    <div className='card-image-container' onClick={goToPage}>
+                        <img src={approve.image_film} className='img-dono'></img>
+                    </div>               
+                </div> 
+            )}
+            
         </div>
     )
 }

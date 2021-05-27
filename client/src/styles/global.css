@@ -15,6 +15,7 @@ body {
 .container {
     padding: 0 8%;
     margin-top: 5%;
+    margin-bottom: 5%;
 }
 
 .navbar {
@@ -397,8 +398,8 @@ input {
 }
 
 .status-card {
-    background: #00ff8421;
-    color: #00FF47;
+    background: #CD2E71;
+    color: white;
 
     border: none;
     padding: 2px 25px;
@@ -485,8 +486,8 @@ input {
     /* padding-top: 12px;
     padding-bottom: 12px; */
     text-align: left;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #0d0d0d;
+    color: rgb(207, 11, 11);
 }
 
 .arrow {

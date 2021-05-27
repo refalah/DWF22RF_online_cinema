@@ -1,11 +1,12 @@
 import React from 'react';
 import { API } from '../../config/api';
+import Table from 'react-bootstrap/Table'
 
-function Table({pay, loadPayment}) {
+function NewTable({transactions, loadPayment}) {
 
-    const {id, accNumber, proofAttachment, status} = pay;
+    const {id, accNumber, proofAttachment, status} = transactions;
 
-    const handleApprove = async () => {
+    const handleApprove = async (id) => {
         try {
             await API.patch(`/approve/${id}`);
             loadPayment();
@@ -14,10 +15,9 @@ function Table({pay, loadPayment}) {
         } catch (error) {
             console.log(error);
         }
-        console.log(`hello ${id}`)
     }
 
-    const handleCancel = async () => {
+    const handleCancel = async (id) => {
         try {
             await API.patch(`/cancel/${id}`);
             loadPayment();
@@ -26,42 +26,48 @@ function Table({pay, loadPayment}) {
         } catch (error) {
             console.log(error);
         }
-        console.log(`hello ${id}`)
     }
 
     return (
         <div>
             <div className='container table-container'>
-                <table id='customers'>
-                    {/* <tr>
+                <Table id='customers' striped bordered hover variant="dark">
+                  <thead>
+                    <tr>
                       <th>User</th>
                       <th>Bukti Transfer</th>
                       <th>Film</th>
                       <th>Account Number</th>
                       <th>Payment Status</th>
                       <th>Action</th>
-                    </tr> */}
-
-                    <tr>
-                       <td>{pay.User.fullName}</td>
-                       <td>{proofAttachment}</td>
-                       <td>{pay.Film.title}</td>
-                       <td>{accNumber}</td>
-                       <td>{status}</td>
-                       <td>
-                       <div class="dropdown">
-                        <i class="arrow down"></i>
-                          <div class="dropdown-content">
-                          <a href="#" onClick={handleApprove}>Approve</a>
-                          <a href="#" onClick={handleCancel}>Cancel</a>
-                          </div>
-                        </div>
-                       </td>
                     </tr>
-                </table>
+                  </thead>
+                
+                  <tbody>
+                  {transactions.map(transaction => (
+                    <tr>
+                        <td>{transaction.User.fullName}</td>
+                        <td>{transaction.proofAttachment}</td>
+                        <td>{transaction.Film.title}</td>
+                        <td>{transaction.accNumber}</td>
+                        <td>{transaction.status}</td>
+                        <td>
+                        <div class="dropdown" >
+                         <i class="arrow down" style={{padding: 5}}></i>
+                           <div class="dropdown-content" >
+                           <a href="#" onClick={() => handleApprove(transaction.id)}>Approve</a>
+                           <a href="#" onClick={() => handleCancel(transaction.id)}>Cancel</a>
+                           </div>
+                         </div>
+                        </td>
+                    </tr>
+                    ))}
+                   
+                  </tbody>
+                </Table>
             </div>
         </div>
     )
 }
 
-export default Table
+export default NewTable
