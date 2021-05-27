@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useContext} from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import {ContextProvider} from './context/context';
+import {ContextProvider, Context} from './context/context';
+import { API, setAuthToken } from './config/api';
 
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar/Navbar';
@@ -13,9 +14,41 @@ import Profile from './pages/Profile/Profile';
 import HomeTransaction from './pages/HomeTransaction/HomeTransaction';
 import MyFilms from './pages/MyFilms/MyFilms';
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
 
-function App() {
+function App() {   
+  
+    const [, dispatch] = useContext(Context);
+  
+    const checkUser = async () => {
+      try {
+        const response = await API.get("/check-auth");
+        if (response.status === 404 || response.status === 500) {
+          return dispatch({
+            type: "AUTH_ERROR",
+          });
+        }
+        let payload = response.data.data.user;
+        payload.token = localStorage.token;
+        dispatch({
+          type: "USER_SUCCESS",
+          payload,
+        });
+      } catch (error) {
+        console.log(error);
+        dispatch({
+          type: "AUTH_ERROR",
+        });
+      }
+    };
+  
+    useEffect(() => {
+      checkUser();
+    }, []);
+
   return (
     <>
     <ContextProvider>

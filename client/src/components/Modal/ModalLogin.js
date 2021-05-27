@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import { Context } from '../../context/context'
 import ReactDom from 'react-dom'
 import { API, setAuthToken } from "../../config/api";
@@ -45,6 +45,21 @@ function ModalLogin({open, onClose}) {
         })
     }
 
+    const [user, setUser] = useState([]);
+
+    const loadUser = async () => {
+        try {
+            const response = await API.get(`/profile`);
+            setUser(response.data.data.users);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    useEffect(() => {
+        loadUser();
+    }, []);
+
     const onSubmit = async () => {
         try {
             const config = {
@@ -68,6 +83,10 @@ function ModalLogin({open, onClose}) {
                 payload: response.data.data.user
             });
 
+            //loadUser();
+
+            //router.push('/home-transaction');
+
             onClose();
 
             // router.push("/");
@@ -77,6 +96,10 @@ function ModalLogin({open, onClose}) {
         }
     }
 
+    
+    useEffect(() => {
+        loadUser();
+    }, []);
 
     if (!open) return null
     return ReactDom.createPortal(

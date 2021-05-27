@@ -9,12 +9,13 @@ const { register, login } = require('../controllers/auth');
 router.post('/register', register);
 router.post('/login', login);
 
-const { profile } = require('../controllers/user');
+const { profile, checkAuth } = require('../controllers/user');
 
 // router.post("/user", createUser);
 // router.delete("/user/:id", deleteUser);
 // router.get("/users", authToken, getUsers);
 router.get("/profile", authToken, profile);
+router.get("/check-auth", authToken, checkAuth);
 
 const { createFilm, getFilms, filmDetails } = require('../controllers/film');
 

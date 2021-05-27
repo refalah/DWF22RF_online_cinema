@@ -45,3 +45,42 @@ exports.profile = async (req, res) => {
         })
     }
 }
+
+exports.checkAuth = async (req, res) => {
+  try {
+    const id = req.userId;
+
+    const dataUser = await User.findOne({
+      where: {
+        id,
+      },
+      attributes: {
+        exclude: ["createdAt", "updatedAt", "password"],
+      },
+    });
+
+    if (!dataUser) {
+      return res.status(404).send({
+        status: "Failed",
+      });
+    }
+
+    res.send({
+      status: "success",
+      message: "user valid",
+      data: {
+        user: {
+          id: dataUser.id,
+          fullname: dataUser.fullname,
+          email: dataUser.email,
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      status: "failed",
+      message: "server error",
+    });
+  }
+};
