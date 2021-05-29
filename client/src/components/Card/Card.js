@@ -11,8 +11,8 @@ function Card({film, approve}) {
     const router = useHistory();
     //console.log(approve.Film)
 
-    const goToPage = () => {
-        //router.push(`/film/${id}`);
+    const goToPage = (id) => {
+        router.push(`/film/${id}`);
     };
 
     return (
@@ -25,7 +25,7 @@ function Card({film, approve}) {
                         <ModalLogin open={isOpen} onClose={() => setIsOpen(false)}></ModalLogin>
                     </div>
                 ) : (
-                    <div className='card-image-container' onClick={goToPage}>
+                    <div className='card-image-container' onClick={() => goToPage(film.id)}>
                         <img src={film&&film.image_url} className='img-dono'></img>
                     </div>
                 )}              
@@ -34,7 +34,7 @@ function Card({film, approve}) {
             ) : (
                 
                 <div className='cards mb-5'>
-                    <div className='card-image-container' onClick={goToPage}>
+                    <div className='card-image-container' onClick={() => goToPage(approve.Film.id)}>
                         <img src={approve.image_film} className='img-dono'></img>
                     </div>               
                 </div> 

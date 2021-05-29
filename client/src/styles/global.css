@@ -14,7 +14,7 @@ body {
 
 .container {
     padding: 0 8%;
-    margin-top: 5%;
+    margin-top: 4%;
     margin-bottom: 5%;
 }
 
@@ -101,6 +101,15 @@ body {
 }
 
 /* Modal */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: lightgreen;
+    z-index: 1000;
+}
 
 .modal-register {
     position: fixed;
@@ -128,16 +137,76 @@ body {
     border-radius: 10px;
 }
 
-.modal-donate {
+.modal-buy {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #0D0D0D;
-    width: 516px;
-    height: 308px;
+    width: 485px;
+    height: 425px;
     z-index: 1000;
     border-radius: 10px;
+}
+
+.img-proof {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.img-proof p {
+    flex: 3;
+    font-size: 12px;
+    color: #616161;
+    margin-left: 15px;
+}
+
+.cinema-number {
+    font-size: 24px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.cinema-number span {
+    color: #CD2E71;
+}
+
+.title-buy {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.total {
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.total span {
+    color: #CD2E71;
+    font-weight: bold;
+}
+
+.proof {
+    background: #CD2E71;
+    color: white;
+    height: 40px;
+    align-items: center;    
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex: 2;
+    padding: 0 5px;
+    font-size: 14px;
+}
+
+.number-account {
+    height: 40px;
 }
 
 .dark-overlay {
@@ -162,15 +231,6 @@ body {
     padding: 0;
 }
 
-#label-thumb{
-    background: #CD2E71;
-    color: white;
-    border: none;
-    padding: 5px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-}
-
 input {
     margin: 10px 0;
 }
@@ -183,14 +243,14 @@ input {
 .input-group-sample {
     display: flex;
     flex-direction: column;
-    margin-top: 15%;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .grab-input {
     margin-bottom: 20px;
     border-radius: 5px;
     padding: 5px;
-
     background: rgba(188, 188, 188, 0.25);
     border: 2px solid #BCBCBC;
 }
@@ -297,12 +357,64 @@ input {
     margin-bottom: 5%;
 }
 
+.detail-container {
+    margin-left: 40px;    
+}
+
+.top-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-details h1 {
+    font-size: 45px;
+}
+
+.video-react-video {
+    width: 640px;
+    height: 360px;
+}
+
+.category {
+    font-size: 20px;
+    color: #7E7E7E;
+    margin-top: 20px;
+}
+
+.price {
+    font-size: 16px;
+    color: #CD2E71;
+    margin-top: 10px;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.description {
+    color: white;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+.detail-container button {
+    background: #CD2E71;
+    color: white;
+    padding: 5px 20px;
+    border-style: none;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
 .film-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-evenly;
-    align-items: center;
-    /* margin-top: 5%; */
     margin-bottom: 5%;
+    align-items: flex-start;    
 }
 
 .film-container img {
@@ -310,16 +422,7 @@ input {
     max-width: 350px;
 }
 
-.detail-container button {
-    margin-top: 40px;
-    background: #CD2E71;
-    color: white;
-    border: none;
-    width: 100%;
-    height: 45px;
-    border-radius: 10px;
-    cursor: pointer;
-}
+
 
 /* Profile */
 
@@ -501,3 +604,60 @@ input {
     transform: rotate(45deg);
     -webkit-transform: rotate(45deg);
   }
+
+/* Add Film Page */
+
+form input{
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;    
+    background: #D2D2D240;
+    border: 1px solid whitesmoke;
+}
+
+.top-input {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#label-thumb{
+    background: #D2D2D240;
+    border: 1px solid whitesmoke;
+    color: #B1B1B1;
+    height: 40px;
+    align-items: center;    
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    padding: 0 5px;
+}
+
+.description-input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;    
+    background: #D2D2D240;
+    border: 1px solid whitesmoke;
+}
+
+.btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-film {
+    margin-top: 15px;
+    background: #CD2E71;
+    color: white;
+    border: none;
+    padding: 5px 10%;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+}

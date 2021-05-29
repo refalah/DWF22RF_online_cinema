@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {ContextProvider, Context} from './context/context';
 import { API, setAuthToken } from './config/api';
 
+
 import PrivateRoute from './components/PrivateRoute';
 import Navbar from './components/Navbar/Navbar';
 

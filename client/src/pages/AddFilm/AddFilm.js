@@ -57,28 +57,48 @@ function AddFilm() {
         }
     }
 
+    const [chosenFile, setChosenFile] = useState()
+   
+    useEffect(() => {
+        if(!form.thumbnail){
+            setChosenFile(undefined);
+            return;
+        }
+
+        const objectUrl = URL.createObjectURL(form.thumbnail);
+        setChosenFile(objectUrl);
+
+        return () => URL.revokeObjectURL(objectUrl);
+
+    }, [form.thumbnail])
+
     return (
         <>
             <div className='container mt-5'>
                 <form onSubmit={(e) => {
                     e.preventDefault();
                     handleSubmit();
-                }}>                
-                    <input type="text" placeholder="Title" name="title" onChange={(e) => onChange(e)}></input>                    
-                    <br />                  
-                    <input type="file" id="add-thumb" name="thumbnail" onChange={(e) => onChange(e)} hidden/>
-                    <label for="add-thumb" id="label-thumb">Attach Thumbnail</label>
-                    <br></br>
+                }}>
+                    <div className='top-input'>
+                        <input type="text" placeholder="Title" style={{
+                            flex: 5
+                        }} name="title" onChange={(e) => onChange(e)}></input>                  
+                        <input type="file" id="add-thumb" name="thumbnail" onChange={(e) => onChange(e)} hidden/>
+                        <label for="add-thumb" id="label-thumb" style={{marginLeft: 10, flex: 1, fontSize: 13, color: '#b1b1b1'}}>Attach Thumbnail <img style={{paddingLeft: 40, height: 25}} src='/paperclip.svg'/></label>                        
+                    </div>
+                    {<img src={chosenFile} style={{
+                        maxHeight: "200px"
+                    }}/>}
                     <input type="text" placeholder="Category" name="category" onChange={(e) => onChange(e)}></input>                    
                     <br />                     
                     <input type="number" placeholder="Price" name="price" onChange={(e) => onChange(e)}></input>
                     <br />
                     <input type="text" placeholder="Trailer Link" name="link" onChange={(e) => onChange(e)}></input>                    
                     <br /> 
-                    <textarea placeholder="description" name="description" onChange={(e) => onChange(e)}></textarea>
+                    <textarea placeholder="Description" name="description" rows={10} className='description-input' onChange={(e) => onChange(e)}></textarea>
                     <br />
                     <div className='btn-container pb-3'>
-                        <button type='submit' className='btn-fund'>Add Film</button>
+                        <button type='submit' className='btn-film'>Add Film</button>
                     </div>
                 </form>
                 </div>

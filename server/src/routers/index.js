@@ -23,10 +23,11 @@ router.post("/film", uploadFile("imageFile"), createFilm);
 router.get("/films", getFilms);
 router.get("/film/:id", filmDetails);
 
-const { createTransaction, getUserTransactions, getTransactions, approvePurchase, cancelPurchase, getMyFilms } = require('../controllers/transaction');
+const { createTransaction, getUserTransactions, getTransactions, approvePurchase, cancelPurchase, getMyFilms, getMySelectedFilm } = require('../controllers/transaction');
 router.post("/buy/:id2", uploadFile("imageFile"),  authToken, createTransaction);
 router.get("/user-purchase", authToken, getUserTransactions);
 router.get("/my-films", authToken, getMyFilms);
+router.get("/my-films/:id2", authToken, getMySelectedFilm);
 router.get("/transactions", getTransactions);
 router.patch("/approve/:id", approvePurchase);
 router.patch("/cancel/:id", cancelPurchase);

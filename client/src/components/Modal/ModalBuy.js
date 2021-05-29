@@ -3,12 +3,16 @@ import { API } from '../../config/api';
 import {useParams} from 'react-router-dom';
 import ReactDom from 'react-dom';
 import { Context } from '../../context/context';
+import {convertToRupiah} from '../../utils/index';
+import PopUp from './PopUp';
 
-function ModalBuy({open, onClose}) {
+function ModalBuy({open, onClose, loadFilm}) {
 
     const params = useParams();
     const {id} = params;
     const [ , dispatch] = useContext(Context);
+    const [isOpen, setIsOpen] = useState(false);
+    const [popOpen, setPopOpen] = useState(false);
 
     const [form, setForm] = useState({
         accNumber: "",
@@ -21,6 +25,11 @@ function ModalBuy({open, onClose}) {
             [e.target.name]: e.target.type === "file" ? e.target.files : e.target.value
         })
     };
+
+    const handleOpen = () => {
+        onClose();
+        setPopOpen(true)        
+    }
 
     const handleSubmit = async () => {
         try {
@@ -36,8 +45,10 @@ function ModalBuy({open, onClose}) {
 
             await API.post(`/buy/${id}`, formData, config);
 
+            //setIsOpen(true);
+            //onClose();
+            handleOpen();
             
-            onClose();
 
         } catch (error) {
             console.log(error);
@@ -48,33 +59,32 @@ function ModalBuy({open, onClose}) {
     return ReactDom.createPortal(
         <>
             <div className='dark-overlay' onClick={onClose}></div>
-            <div className='modal-donate'>
+            <div className='modal-buy'>
                   
                 <div className='modal-sample-content'>
                     <form onSubmit={(e) => {
                         e.preventDefault();
-                        handleSubmit();
-                    }}>
                         
-                        <div className='input-group-sample'>
-                            
-                            <input type='number' name='accNumber' placeholder='Input Your Account Number' className=' grab-input'  onChange={(e) => onChange(e)}></input>
+                        handleSubmit();
+                        
+                    }}>
+                        <p className='cinema-number'>Cinema<span>Online</span> : 0981312323</p>
+                        <div className='input-group-sample'>                            
+                            <p className='title-buy'>{loadFilm.title}</p>
+                            <p className='total'>Total : <span>{loadFilm.price&&convertToRupiah(loadFilm.price)}</span></p>                            
+                            <input type='number' name='accNumber' placeholder='Input Your Account Number' className='number-account'  onChange={(e) => onChange(e)}></input>
 
                             <div className='img-proof' style={{
                                 marginBottom : '20px'
                             }}>
                                 <input type="file" id="add-thumb" name="proofAttachment" onChange={(e) => onChange  (e)} hidden/>
-                                <label for="add-thumb" id="label-thumb" style={{
-                                    marginRight : "50px",
-                                    width: "50%"
-                                }}>Attach Thumbnail</label>
-                                <p style={{
-                                    width: "70%"
-                                }}>*transfers can be made to cinema accounts</p>
+                                <label for="add-thumb" className='proof'>Attach Payment <img style={{paddingLeft: 20, height: 25, color: 'white'}} src='/list.svg'/></label>
+                                <p>*transfers can be made to cinema accounts </p>
                             </div>
                         </div>
 
-                        <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' >Pay</button>
+                        <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' onClick={() => setPopOpen(true)}>Pay</button>
+                        <PopUp open={popOpen} onPopClose={() => setPopOpen(false)}></PopUp>
                        
                     </form>
                     </div>
