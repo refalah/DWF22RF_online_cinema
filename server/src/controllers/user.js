@@ -84,3 +84,31 @@ exports.checkAuth = async (req, res) => {
     });
   }
 };
+
+exports.editProfile = async (req, res) => {
+  const id = req.userId;
+  const {fullName, email, picture, phone} = req.body;
+  
+  try {
+      const picture = req.files.imageFile[0].filename;
+
+      const edit = await User.update({fullName, email, picture, phone}, {where: {id}});
+
+      console.log(edit)
+
+      res.send({
+          status: "success",
+          data: {
+            edit
+          }
+        });
+
+  } catch (error) {
+      console.log(error);
+      res.send({
+          status: "failed",
+          message: "something went wrong"
+      })
+  }
+}
+

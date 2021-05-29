@@ -33,6 +33,7 @@ const reducer = (state, action) => {
                 ...state,
                 isVisibleRegister: false
             };
+        
         // case "LOGIN":
         //     return {
         //         ...state,

@@ -9,11 +9,11 @@ const { register, login } = require('../controllers/auth');
 router.post('/register', register);
 router.post('/login', login);
 
-const { profile, checkAuth } = require('../controllers/user');
+const { profile, checkAuth, editProfile } = require('../controllers/user');
 
 // router.post("/user", createUser);
 // router.delete("/user/:id", deleteUser);
-// router.get("/users", authToken, getUsers);
+router.patch("/edit-profile", uploadFile("imageFile"), authToken, editProfile);
 router.get("/profile", authToken, profile);
 router.get("/check-auth", authToken, checkAuth);
 

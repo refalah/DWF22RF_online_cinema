@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {useHistory} from 'react-router-dom'
 import CardProfile from '../../components/Card/CardProfile';
 import History from '../../components/Card/CardHistory';
 import { API } from '../../config/api';
+import { Context } from '../../context/context';
 
 function Profile() {
 
@@ -10,6 +11,7 @@ function Profile() {
 
     const [user, setUser] = useState([]);
     const [purchases, setPurchases] = useState([]);
+    
 
     const loadUser = async () => {
         try {
@@ -34,9 +36,17 @@ function Profile() {
         loadPurchases();
     }, []);
 
+    const goEditProfile = () => {
+        router.push('edit-profile');
+    }
+
     return (
         <div>
             <div className='container'>
+                <div className='fund-header'>
+                    <h3>My Profile</h3>
+                    <button onClick={goEditProfile}><a>Edit Profile</a></button>
+                </div>
             <div className="profile-container">
                     <CardProfile user = {user}/>
                     <div className='history-container'>

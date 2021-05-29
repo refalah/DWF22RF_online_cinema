@@ -98,7 +98,7 @@ function AddFilm() {
                     <textarea placeholder="Description" name="description" rows={10} className='description-input' onChange={(e) => onChange(e)}></textarea>
                     <br />
                     <div className='btn-container pb-3'>
-                        <button type='submit' className='btn-film'>Add Film</button>
+                        <button type='submit' className='btn-film' style={{marginTop: 15}}>Add Film</button>
                     </div>
                 </form>
                 </div>

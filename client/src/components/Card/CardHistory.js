@@ -1,11 +1,14 @@
 import React from 'react'
+import {convertToRupiah} from '../../utils/index';
 
 function CardHistory({userData}) {
 
     const {accNumber, createdAt, status, id} = userData;
     //console.log(userData.Fund.createdAt);
     const date = new Date(createdAt);
-    const newFormDate = new Intl.DateTimeFormat(['ban', 'en'], { dateStyle: 'full' }).format(date)
+    const newFormDate = new Intl.DateTimeFormat(['ban', 'en'], { dateStyle: 'full' }).format(date);
+
+    
 
     return (
         <div>
@@ -18,17 +21,21 @@ function CardHistory({userData}) {
                         <p>{newFormDate}</p>
                     </div>
                     <div className='history-status'>
-                        <p>{userData.Film.price&&userData.Film.price}</p>
+                        <p>{userData.Film.price&&convertToRupiah(userData.Film.price)}</p>
                         {status == "Pending" ? (
                             <div className='status-card' style={{
-                                background: "#F6FF72",
+                                background: "brown",
                                 color: "orange"
                             }}>{status}</div>
                         ) : (
                             <div className='status-card'>{status}</div>
-                        )}
-                        
-                       
+                        ) && status == "Canceled" ? (
+                            <div className='status-card' style={{
+                                background: "maroon",
+                                color: "red"
+                            }}>{status}</div> 
+                        ) : (<div className='status-card'>{status}</div>)}
+                     
                     </div>
                 </div>
             </div>

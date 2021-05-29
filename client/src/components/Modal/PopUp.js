@@ -3,8 +3,6 @@ import ReactDom from 'react-dom';
 import { Context } from '../../context/context';
 
 function PopUp({open, OnPopClose}) {
-
-    
     const [ , dispatch] = useContext(Context);
 
     if (!open) return null

@@ -46,8 +46,8 @@ function ModalBuy({open, onClose, loadFilm}) {
             await API.post(`/buy/${id}`, formData, config);
 
             //setIsOpen(true);
-            //onClose();
-            handleOpen();
+            onClose();
+            //handleOpen();
             
 
         } catch (error) {
@@ -63,8 +63,7 @@ function ModalBuy({open, onClose, loadFilm}) {
                   
                 <div className='modal-sample-content'>
                     <form onSubmit={(e) => {
-                        e.preventDefault();
-                        
+                        e.preventDefault();                        
                         handleSubmit();
                         
                     }}>
@@ -83,7 +82,7 @@ function ModalBuy({open, onClose, loadFilm}) {
                             </div>
                         </div>
 
-                        <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' onClick={() => setPopOpen(true)}>Pay</button>
+                        <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' >Pay</button>
                         <PopUp open={popOpen} onPopClose={() => setPopOpen(false)}></PopUp>
                        
                     </form>
