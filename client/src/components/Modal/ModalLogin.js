@@ -27,6 +27,9 @@ function ModalLogin({open, onClose}) {
         })
     };
 
+    function refreshPage() {
+        window.location.reload(false);
+      }
 
     const handleLogin = () => {
         dispatch({
@@ -82,6 +85,8 @@ function ModalLogin({open, onClose}) {
                 type: "LOGIN_SUCCESS",
                 payload: response.data.data.user
             });
+
+            refreshPage();
 
             //loadUser();
 

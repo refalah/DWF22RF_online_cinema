@@ -53,7 +53,7 @@ function App() {
 
   return (
     <>
-    <ContextProvider>
+    {/* <ContextProvider> */}
       <Router>
         <Navbar/>
         <Switch>
@@ -67,7 +67,7 @@ function App() {
           <PrivateRoute path='/home-transaction' exact component={HomeTransaction}></PrivateRoute>
         </Switch>
       </Router>
-    </ContextProvider>
+    {/* </ContextProvider> */}
     </>
   );
 }

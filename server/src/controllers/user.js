@@ -1,4 +1,5 @@
 const {User, Donate, Film} = require('../../models');
+require('dotenv').config();
 
 exports.profile = async (req, res) => {
     const id = req.userId;
@@ -65,6 +66,8 @@ exports.checkAuth = async (req, res) => {
       });
     }
 
+
+
     res.send({
       status: "success",
       message: "user valid",
@@ -72,7 +75,7 @@ exports.checkAuth = async (req, res) => {
         user: {
           id: dataUser.id,
           fullname: dataUser.fullname,
-          email: dataUser.email,
+          email: dataUser.email
         },
       },
     });

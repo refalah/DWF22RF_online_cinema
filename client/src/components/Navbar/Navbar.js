@@ -8,11 +8,16 @@ import ModalRegister from '../Modal/ModalRegister';
 function Navbar() {
     const [ state, ] = useContext(Context)
     const [ , dispatch] = useContext(Context)
+
+    function refreshPage() {
+        window.location.reload(false);
+      }
     
     const handleLogout = () => {
         dispatch({
             type: "LOGOUT"
         })
+        refreshPage();
     }
     const handleOpenLogin = () => {
         dispatch({
