@@ -92,18 +92,23 @@ function Navbar() {
                             </li>
 
                             <div class="dropdown">
-                              <button class="dropbtn">Dropdown</button>
+                            <img src='/User.png'/>
+                              <button class="dropbtn" hidden>Dropdown</button>
                               <div class="dropdown-content">
                                 {user.id&&user.id === 1 ? (
                                     <>
-                                        <a href="#" onClick={() => router.push('/add-film')}>Add Film</a>
-                                        <a href="#" onClick={handleLogout}>Logout</a>
+                                        <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
+                                            <a href="#" onClick={() => router.push('/add-film')}><img src='/film.svg'/>Add Film</a>
+                                        </div>
+                                        <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
                                     </>
                                 ) : (
                                     <>
-                                        <a href="#" onClick={() => router.push('/profile')}>Profile</a>
-                                        <a href="#" onClick={() => router.push('/my-films')}>My Film List</a>
-                                        <a href="#" onClick={handleLogout}>Logout</a>
+                                        <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
+                                            <a href="#" onClick={() => router.push('/profile')}><img src='/user2.svg'/>Profile</a>
+                                            <a href="#" onClick={() => router.push('/my-films')}><img src='clapperboard.svg'/>My Film List</a>
+                                        </div>                                        
+                                        <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
                                     </>
                                 )}
                                

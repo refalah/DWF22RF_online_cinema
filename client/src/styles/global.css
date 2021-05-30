@@ -286,28 +286,56 @@ input {
     position: relative;
     display: inline-block;
   }
+
+.dropdown-one {
+    display: flex;
+    justify-content: center;
+}
   
   /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    background-color: #0D0D0D;
+    width: 170px;
     z-index: 1;
     right: 0;
+    border-radius: 10px;
+    box-shadow: 4px 4px 20px 0px #00000040;
   }
   
+.drop-item {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    justify-content: space-evenly;
+}
+
+.drop-item img {
+    height: 20px;
+}
+
   /* Links inside the dropdown */
   .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
+    color: white;
+    padding: 12px 15px;
     text-decoration: none;
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .dropdown-content img {
+      height: 25px;
+      width: 25px;
+      margin-right: 20px;
   }
   
   /* Change color of dropdown links on hover */
-  .dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {
+    background-color: #202020;
+    border-radius: 10px;
+}
   
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
@@ -527,7 +555,7 @@ input {
 
 .status-card {
     color: #00FF47;
-    background-color: #00ff4841;
+    background-color: #00ff4848;
     border: none;
     border-radius: 1px;
     padding: 2px 25px;
@@ -604,17 +632,18 @@ input {
   
   #customers td, #customers th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 18px;
   }
   
-  #customers tr:nth-child(even){background-color: #0d0d0d;}
+  #customers tr:nth-child(odd){background-color: #2b2b2b;}
+  #customers tr:nth-child(even){background-color: #1f1f1f;}
   
   #customers th {
     /* padding-top: 12px;
     padding-bottom: 12px; */
     text-align: left;
-    background-color: #0d0d0d;
-    color: rgb(207, 11, 11);
+    background-color: #1f1f1f;
+    color: #E50914
 }
 
 .arrow {

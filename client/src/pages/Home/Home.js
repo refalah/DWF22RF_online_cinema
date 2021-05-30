@@ -10,6 +10,8 @@ function Home() {
     const router = useHistory();
 
     const [ films, setFilms ]= useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
 
     const loadFilms = async () => {
         try {
@@ -23,9 +25,11 @@ function Home() {
     const [user, setUser] = useState([]);
 
     const loadUser = async () => {
+        setIsLoading(true);
         try {
             const response = await API.get(`/profile`);
             setUser(response.data.data.users);
+            setIsLoading(false);
         } catch (error) {
             console.log(error);
         }

@@ -24,15 +24,15 @@ function CardHistory({userData}) {
                         <p>{userData.Film.price&&convertToRupiah(userData.Film.price)}</p>
                         {status == "Pending" ? (
                             <div className='status-card' style={{
-                                background: "brown",
+                                background: "#ffa6003b",
                                 color: "orange"
                             }}>{status}</div>
                         ) : (
                             <div className='status-card'>{status}</div>
                         ) && status == "Canceled" ? (
                             <div className='status-card' style={{
-                                background: "maroon",
-                                color: "red"
+                                background: "#e509143b",
+                                color: "bloodred"                                
                             }}>{status}</div> 
                         ) : (<div className='status-card'>{status}</div>)}
                      

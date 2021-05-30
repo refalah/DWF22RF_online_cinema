@@ -50,13 +50,26 @@ function NewTable({transactions, loadPayment}) {
                         <td>{transaction.proofAttachment}</td>
                         <td>{transaction.Film.title}</td>
                         <td>{transaction.accNumber}</td>
-                        <td>{transaction.status}</td>
-                        <td>
-                        <div class="dropdown" >
-                         <i class="arrow down" style={{padding: 5}}></i>
-                           <div class="dropdown-content" >
-                           <a href="#" onClick={() => handleApprove(transaction.id)}>Approve</a>
-                           <a href="#" onClick={() => handleCancel(transaction.id)}>Cancel</a>
+                        {transaction.status == "Pending" ? (
+                            <td style={{color:'#F7941E'}}>{transaction.status}</td>
+                        ) : (
+                            <td style={{color:'#0ACF83'}}>{transaction.status}</td>
+                        ) && transaction.status == "Canceled" ? (
+                            <td style={{color:'#FF0742'}}>{transaction.status}</td>
+                        ) : (
+                            <td style={{color:'#0ACF83'}}>{transaction.status}</td>
+                        )}
+                        {/* <td>{transaction.status}</td> */}
+                        <td  className='dropdown-one'>
+                        <div class="dropdown">
+                         {/* <i className="arrow down dropdown-one"></i> */}
+                         <div>
+                            <img  src='/Polygon.svg'/>
+                         </div>
+                         
+                           <div class="dropdown-content " style={{width: 100}}>
+                           <a href="#" style={{color:'#0ACF83'}} onClick={() => handleApprove(transaction.id)}>Approve</a>
+                           <a href="#" style={{color:'red'}} onClick={() => handleCancel(transaction.id)}>Cancel</a>
                            </div>
                          </div>
                         </td>

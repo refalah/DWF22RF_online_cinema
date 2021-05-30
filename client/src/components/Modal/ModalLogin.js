@@ -9,7 +9,7 @@ function ModalLogin({open, onClose}) {
     const router = useHistory();
 
     const [ state, dispatch] = useContext(Context);
-
+    const [isLoading, setIsLoading] = useState(false);
 
     const [form, setForm] = useState({
         email: "",
@@ -51,9 +51,11 @@ function ModalLogin({open, onClose}) {
     const [user, setUser] = useState([]);
 
     const loadUser = async () => {
+        
         try {
             const response = await API.get(`/profile`);
             setUser(response.data.data.users);
+            
         } catch (error) {
             console.log(error);
         }
@@ -64,6 +66,7 @@ function ModalLogin({open, onClose}) {
     }, []);
 
     const onSubmit = async () => {
+        setIsLoading(true);
         try {
             const config = {
                 headers: {
@@ -87,6 +90,7 @@ function ModalLogin({open, onClose}) {
             });
 
             refreshPage();
+            setIsLoading(false);
 
             //loadUser();
 
@@ -98,6 +102,7 @@ function ModalLogin({open, onClose}) {
 
         } catch (error) {
             console.log(error);
+            setIsLoading(false);
         }
     }
 
