@@ -1,5 +1,5 @@
-import React, {useEffect, useContext} from 'react';
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import React, {useEffect, useContext, useState} from 'react';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 import {ContextProvider, Context} from './context/context';
 import { API, setAuthToken } from './config/api';
 
@@ -15,6 +15,8 @@ import Profile from './pages/Profile/Profile';
 import HomeTransaction from './pages/HomeTransaction/HomeTransaction';
 import MyFilms from './pages/MyFilms/MyFilms';
 import EditProfile from './pages/EditProfile/EditProfile';
+import LoadingPage from './pages/LoadingPage';
+import NotFound from './pages/NotFound';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -24,6 +26,7 @@ if (localStorage.token) {
 function App() {   
   
     const [, dispatch] = useContext(Context);
+    const [isLoading, setIsLoading] = useState(false);
   
     const checkUser = async () => {
       try {
@@ -49,12 +52,18 @@ function App() {
   
     useEffect(() => {
       checkUser();
+      setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 1000)
     }, []);
 
   return (
     <>
     {/* <ContextProvider> */}
       <Router>
+      {isLoading ? <LoadingPage /> : 
+        <div>
         <Navbar/>
         <Switch>
           <Route path='/' exact component={Home}></Route>
@@ -65,7 +74,11 @@ function App() {
           <PrivateRoute path='/edit-profile' exact component={EditProfile}></PrivateRoute>
           <PrivateRoute path='/my-films' exact component={MyFilms}></PrivateRoute>
           <PrivateRoute path='/home-transaction' exact component={HomeTransaction}></PrivateRoute>
+          <Route path="/404" component={NotFound}></Route>
+          <Redirect to="/404"></Redirect>
         </Switch>
+        </div>
+      }
       </Router>
     {/* </ContextProvider> */}
     </>

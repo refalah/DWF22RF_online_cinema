@@ -4,6 +4,7 @@ import { Context } from '../../context/context';
 import { API } from '../../config/api';
 import ModalLogin from '../Modal/ModalLogin';
 import ModalRegister from '../Modal/ModalRegister';
+import LoadingPage from '../../pages/LoadingPage';
 
 function Navbar() {
     const [ state, ] = useContext(Context)
@@ -14,10 +15,11 @@ function Navbar() {
       }
     
     const handleLogout = () => {
+        refreshPage();
         dispatch({
             type: "LOGOUT"
         })
-        refreshPage();
+        
     }
     const handleOpenLogin = () => {
         dispatch({
@@ -43,6 +45,7 @@ function Navbar() {
     const router = useHistory();
 
     const [user, setUser] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const loadUser = async () => {
         try {
@@ -55,12 +58,18 @@ function Navbar() {
 
     useEffect(() => {
         loadUser();
+        setIsLoading(true);
+        setTimeout(() => {
+            setIsLoading(false);
+        }, 500)
     }, []);
 
     console.log(user.id)
 
     return (
         <>
+        {isLoading ? <LoadingPage/> :
+        <div>
             <div className="navbar">
                 <div className="navbar-container">
                     <Link to="/" className="navbar-logo">
@@ -123,7 +132,9 @@ function Navbar() {
                          )}
                     </ul>
                 </div>
-            </div>            
+            </div>
+            </div>  
+            }          
         </>
     )
 }

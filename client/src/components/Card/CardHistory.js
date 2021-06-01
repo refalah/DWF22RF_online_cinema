@@ -32,7 +32,7 @@ function CardHistory({userData}) {
                         ) && status == "Canceled" ? (
                             <div className='status-card' style={{
                                 background: "#e509143b",
-                                color: "bloodred"                                
+                                color: "red"                                
                             }}>{status}</div> 
                         ) : (<div className='status-card'>{status}</div>)}
                      

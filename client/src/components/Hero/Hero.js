@@ -22,7 +22,7 @@ function Hero() {
                                 <ModalLogin open={isOpen} onClose={() => setIsOpen(false)}></ModalLogin>
                             </>
                         ) : (
-                            <div className='hero-link' onClick={() => router.push("/film/:id")}>Buy Now</div>
+                            <div className='hero-link' onClick={() => router.push(`/film/:id`)}>Buy Now</div>
                         )}
                         
                     </div>

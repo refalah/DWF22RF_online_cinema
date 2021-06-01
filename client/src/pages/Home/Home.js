@@ -4,6 +4,7 @@ import Hero from '../../components/Hero/Hero';
 import Card from '../../components/Card/Card';
 import HomeTransaction from '../HomeTransaction/HomeTransaction';
 import {API} from '../../config/api';
+import LoadingPage from '../LoadingPage';
 
 function Home() {
 
@@ -38,33 +39,39 @@ function Home() {
     useEffect(() => {
         loadUser();
         loadFilms();
-        
+        // setIsLoading(true);
+        // setTimeout(() => {
+        //     setIsLoading(false);
+        // }, 1000)
     }, []);
 
     return (
         <>
-            {user&&user.id === 1 ? (
-                <div>
-                    <HomeTransaction />
-                </div>
-            ) : (
-                <div className="container mt-5">
-                    <Hero />
-                    <div className='card '>
-                    <div className='card-body card-fund'>
-                        <div className='row'>
-                            {films&&films.map((film, index) => (
-                                <div className='col' key={film.id + index}>
-                                    <Card film = { film } />
-                                </div>
-                            ))}
+            {/* {isLoading ? <LoadingPage /> : 
+            <div> */}
+                {user&&user.id === 1 ? (
+                    <div>
+                        <HomeTransaction />
+                    </div>
+                ) : (
+                    <div className="container mt-5">
+                        <Hero />
+                        <div className='card '>
+                        <div className='card-body card-fund'>
+                            <div className='row'>
+                                {films&&films.map((film, index) => (
+                                    <div className='col' key={film.id + index}>
+                                        <Card film = { film } />
+                                    </div>
+                                ))}
 
+                            </div>
                         </div>
-                    </div>
-                    </div>
-                </div>   
-            )}
-            
+                        </div>
+                    </div>   
+                )}
+            {/* </div>
+            } */}
         </>
     )
 }

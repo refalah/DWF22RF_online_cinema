@@ -6,7 +6,8 @@ const initialState = {
     isLogin: false,
     user: null,
     isVisibleLogin: false,
-    isVisibleRegister: false
+    isVisibleRegister: false,
+    isPopUp: false
 }
 
 const reducer = (state, action) => {
@@ -34,11 +35,16 @@ const reducer = (state, action) => {
                 isVisibleRegister: false
             };
         
-        // case "LOGIN":
-        //     return {
-        //         ...state,
-        //         isLogin: true
-        //     };
+        case "OPENPOPUP":
+            return {
+                ...state,
+                isPopUp: true
+            };
+        case "CLOSEPOPUP":
+            return {
+                ...state,
+                isPopUp: false
+            };
         // case "LOGOUT":
         //     return {
         //         ...state,

@@ -10,6 +10,7 @@ function ModalBuy({open, onClose, loadFilm}) {
 
     const params = useParams();
     const {id} = params;
+    const [ state, ] = useContext(Context)
     const [ , dispatch] = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
     const [popOpen, setPopOpen] = useState(false);
@@ -27,8 +28,9 @@ function ModalBuy({open, onClose, loadFilm}) {
     };
 
     const handleOpen = () => {
-        onClose();
-        setPopOpen(true)        
+        dispatch({
+            type: "OPENPOPUP"
+        })        
     }
 
     const handleSubmit = async () => {
@@ -43,11 +45,13 @@ function ModalBuy({open, onClose, loadFilm}) {
             formData.set("accNumber", form.accNumber);
             formData.append("imageFile", form.proofAttachment[0], form.proofAttachment[0].name);
 
-            await API.post(`/buy/${id}`, formData, config);
+            const response = await API.post(`/buy/${id}`, formData, config);
 
-            //setIsOpen(true);
+            if(response.data.status != "failed"){
+                handleOpen();
+            }
             onClose();
-            //handleOpen();
+            //
             
 
         } catch (error) {
@@ -65,7 +69,6 @@ function ModalBuy({open, onClose, loadFilm}) {
                     <form onSubmit={(e) => {
                         e.preventDefault();                        
                         handleSubmit();
-                        
                     }}>
                         <p className='cinema-number'>Cinema<span>Online</span> : 0981312323</p>
                         <div className='input-group-sample'>                            
@@ -83,7 +86,7 @@ function ModalBuy({open, onClose, loadFilm}) {
                         </div>
 
                         <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' >Pay</button>
-                        <PopUp open={popOpen} onPopClose={() => setPopOpen(false)}></PopUp>
+                        <PopUp open={state.isPopUp} onPopClose={() => setPopOpen(false)}></PopUp>
                        
                     </form>
                     </div>
