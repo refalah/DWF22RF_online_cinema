@@ -13,6 +13,7 @@ function AddFilm() {
         category: "",
         price: "",
         link: "",
+        movie: "",
         description: ""
     });
 
@@ -37,6 +38,7 @@ function AddFilm() {
             formData.set("category", form.category);
             formData.set("price", form.price);
             formData.set("link", form.link);
+            formData.set("movie", form.movie);
             formData.set("description", form.description);
            
 
@@ -94,6 +96,8 @@ function AddFilm() {
                     <input type="number" placeholder="Price" name="price" onChange={(e) => onChange(e)}></input>
                     <br />
                     <input type="text" placeholder="Trailer Link" name="link" onChange={(e) => onChange(e)}></input>                    
+                    <br /> 
+                    <input type="text" placeholder="The Movie" name="movie" onChange={(e) => onChange(e)}></input>                    
                     <br /> 
                     <textarea placeholder="Description" name="description" rows={10} className='description-input' onChange={(e) => onChange(e)}></textarea>
                     <br />

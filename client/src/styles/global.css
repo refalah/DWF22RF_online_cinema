@@ -18,6 +18,27 @@ body {
     margin-bottom: 5%;
 }
 
+.not-found {
+    white-space: pre-wrap;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 45px;
+}
+
+.under {
+    font-size: 32px;
+    list-style: none;
+    cursor: pointer;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
 .navbar {
     background: black;
     display: flex;
@@ -107,8 +128,15 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    color: lightgreen;
+    color: #469F74;
     z-index: 1000;
+    width: 669px;
+    height: 63px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 37px;
 }
 
 .modal-register {

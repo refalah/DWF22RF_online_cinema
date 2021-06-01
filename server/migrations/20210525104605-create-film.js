@@ -23,6 +23,9 @@ module.exports = {
       link: {
         type: Sequelize.STRING
       },
+      movie: {
+        type: Sequelize.STRING
+      },
       description: {
         type: Sequelize.STRING
       },

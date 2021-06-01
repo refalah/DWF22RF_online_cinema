@@ -7,7 +7,8 @@ const initialState = {
     user: null,
     isVisibleLogin: false,
     isVisibleRegister: false,
-    isPopUp: false
+    isPopUp: false,
+    isBuy: false,
 }
 
 const reducer = (state, action) => {
@@ -44,6 +45,17 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isPopUp: false
+            };
+        
+        case "OPENBUY":
+            return {
+                ...state,
+                isBuy: true
+            };
+        case "CLOSEBUY":
+            return {
+                ...state,
+                isBuy: false
             };
         // case "LOGOUT":
         //     return {

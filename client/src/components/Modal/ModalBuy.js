@@ -13,7 +13,7 @@ function ModalBuy({open, onClose, loadFilm}) {
     const [ state, ] = useContext(Context)
     const [ , dispatch] = useContext(Context);
     const [isOpen, setIsOpen] = useState(false);
-    const [popOpen, setPopOpen] = useState(false);
+    
 
     const [form, setForm] = useState({
         accNumber: "",
@@ -33,6 +33,12 @@ function ModalBuy({open, onClose, loadFilm}) {
         })        
     }
 
+    const handleCloseBuy = () => {
+        dispatch({
+            type: "CLOSEBUY"
+        })
+    }
+
     const handleSubmit = async () => {
         try {
             const config = {
@@ -47,11 +53,9 @@ function ModalBuy({open, onClose, loadFilm}) {
 
             const response = await API.post(`/buy/${id}`, formData, config);
 
-            if(response.data.status != "failed"){
-                handleOpen();
-            }
-            onClose();
-            //
+            
+            handleCloseBuy();
+            handleOpen();
             
 
         } catch (error) {
@@ -63,12 +67,12 @@ function ModalBuy({open, onClose, loadFilm}) {
     return ReactDom.createPortal(
         <>
             <div className='dark-overlay' onClick={onClose}></div>
-            <div className='modal-buy'>
-                  
+            <div className='modal-buy'>                  
                 <div className='modal-sample-content'>
                     <form onSubmit={(e) => {
                         e.preventDefault();                        
                         handleSubmit();
+                        
                     }}>
                         <p className='cinema-number'>Cinema<span>Online</span> : 0981312323</p>
                         <div className='input-group-sample'>                            
@@ -86,7 +90,7 @@ function ModalBuy({open, onClose, loadFilm}) {
                         </div>
 
                         <button type='submit' style={{textAlign: 'center'}} className='modal-sample-link' >Pay</button>
-                        <PopUp open={state.isPopUp} onPopClose={() => setPopOpen(false)}></PopUp>
+                        
                        
                     </form>
                     </div>

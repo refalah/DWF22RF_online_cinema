@@ -64,7 +64,6 @@ function Navbar() {
         }, 500)
     }, []);
 
-    console.log(user.id)
 
     return (
         <>
@@ -104,7 +103,7 @@ function Navbar() {
                             <img src='/User.png'/>
                               <button class="dropbtn" hidden>Dropdown</button>
                               <div class="dropdown-content">
-                                {user.id&&user.id === 1 ? (
+                                {user&&user.id === 1 ? (
                                     <>
                                         <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
                                             <a href="#" onClick={() => router.push('/add-film')}><img src='/film.svg'/>Add Film</a>

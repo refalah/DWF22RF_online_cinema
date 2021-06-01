@@ -6,12 +6,17 @@ import { Player } from 'video-react';
 import ReactPlayer from 'react-player';
 import {} from '../../../node_modules/video-react/dist/video-react.css'
 import {convertToRupiah} from '../../utils/index';
+import {Context} from '../../context/context';
 import LoadingPage from '../LoadingPage';
+import PopUp from '../../components/Modal/PopUp';
 
 function FilmDetails() {
 
     const params = useParams();
     const {id} = params;
+
+    const [ state, ] = useContext(Context)
+    const [ , dispatch] = useContext(Context);
 
     const [show, setShow] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -19,11 +24,22 @@ function FilmDetails() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const router = useHistory();
+    const [popOpen, setPopOpen] = useState(false);
 
     const [film, setFilm] = useState([]);
     const [purchase, setPurchase] = useState([]);
 
-    
+    const handleOpenBuy = () => {
+        dispatch({
+            type: "OPENBUY"
+        })
+    }
+
+    const handleClosePopUp = () => {
+        dispatch({
+            type: "CLOSEPOPUP"
+        })
+    }
 
     const loadFilm = async () => {
         try {
@@ -83,17 +99,22 @@ function FilmDetails() {
                                 <div></div>
                             ) : (
                                 <div>
-                                    <button onClick={() => {setIsOpen(true)}}>Buy Now</button>
-                                    <ModalBuy open={isOpen} onClose={() => setIsOpen(false)} loadFilm={film}></ModalBuy>
+                                    <button onClick={() => {handleOpenBuy()}}>Buy Now</button>
+                                    <ModalBuy open={state.isBuy} onClose={() => setIsOpen(false)} loadFilm={film}></ModalBuy>
+                                    <PopUp open={state.isPopUp} onPopClose={handleClosePopUp}></PopUp>
                                 </div>
                             )}  
                             
                         </div>
-                        {isLoading ? <LoadingPage/> : 
+                        {purchase ? (
+                            <ReactPlayer style={{marginTop: 20}} controls='true' url={film&&film.movie} width={'100%'} height={360} onReady={loading}/>
+                        ) : 
                         <ReactPlayer style={{marginTop: 20}} controls='true' url={film&&film.link} width={'100%'} height={360} onReady={loading}/>
                         }
                         <p className='category'>{film&&film.category}</p>
-                        <p className='price'>{film&&film.price&&convertToRupiah(film.price)}</p>
+                        {purchase ? (<div/>) : 
+                            <p className='price'>{film&&film.price&&convertToRupiah(film.price)}</p>
+                        }
                         <p className="description">{film&&film.description}</p>                        
                     </div> 
                 </div>                

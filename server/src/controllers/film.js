@@ -3,7 +3,7 @@ require('dotenv').config();
 const Joi = require('joi');
 
 exports.createFilm = async (req, res) => {
-    const {userId, title, thumbnail, price, link, category, description} = req.body;
+    const {userId, title, thumbnail, price, link, movie, category, description} = req.body;
     //const data = req.body;
     try {
         
@@ -19,7 +19,7 @@ exports.createFilm = async (req, res) => {
           });
         }
 
-        const film = await Film.create({title, thumbnail, price, link, category, description});
+        const film = await Film.create({title, thumbnail, price, link, movie, category, description});
         
         res.send({
             status: "success",
