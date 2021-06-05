@@ -5,6 +5,7 @@ import { API, setAuthToken } from './config/api';
 
 
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
 import Navbar from './components/Navbar/Navbar';
 
 import Home from './pages/Home/Home';

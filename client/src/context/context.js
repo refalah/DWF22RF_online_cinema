@@ -9,6 +9,7 @@ const initialState = {
     isVisibleRegister: false,
     isPopUp: false,
     isBuy: false,
+    isAdmin: false,
 }
 
 const reducer = (state, action) => {
@@ -68,6 +69,13 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isLogin: true,
+                user: payload
+            };
+        case "ADMIN_SUCCESS":
+            localStorage.setItem("token", payload.token);
+            return {
+                ...state,
+                isAdmin: true,
                 user: payload
             };
         case "AUTH_ERROR":

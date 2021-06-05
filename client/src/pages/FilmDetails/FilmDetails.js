@@ -35,6 +35,12 @@ function FilmDetails() {
         })
     }
 
+    const handleCloseBuy = () => {
+        dispatch({
+            type: "CLOSEBUY"
+        })
+    }
+
     const handleClosePopUp = () => {
         dispatch({
             type: "CLOSEPOPUP"
@@ -91,7 +97,10 @@ function FilmDetails() {
         <div>
             <div className='container'>
                 <div className='film-container'>
-                    <img src={image_url} className='film-image' style={{flex: 1}}></img>            
+                    <div className='poster-container'>
+                        <img src={image_url} className='film-image' style={{flex: 1}}></img> 
+                    </div>
+                               
                     <div className='detail-container' style={{flex: 5}}>
                         <div className='top-details'>
                             <h1>{film&&film.title}</h1>
@@ -100,7 +109,7 @@ function FilmDetails() {
                             ) : (
                                 <div>
                                     <button onClick={() => {handleOpenBuy()}}>Buy Now</button>
-                                    <ModalBuy open={state.isBuy} onClose={() => setIsOpen(false)} loadFilm={film}></ModalBuy>
+                                    <ModalBuy open={state.isBuy} onClose={handleCloseBuy} loadFilm={film}></ModalBuy>
                                     <PopUp open={state.isPopUp} onPopClose={handleClosePopUp}></PopUp>
                                 </div>
                             )}  

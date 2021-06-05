@@ -10,11 +10,14 @@ function ModalLogin({open, onClose}) {
 
     const [ state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(false);
-
-    const [form, setForm] = useState({
+    const initialState = {
         email: "",
-        password: ""
-    });
+        password: "",
+      };
+
+    const [form, setForm] = useState(
+        initialState
+    );
 
     const { email, password } = form;
 
@@ -28,15 +31,9 @@ function ModalLogin({open, onClose}) {
     };
 
     function refreshPage() {
-        window.location.reload(false);
-      }
-
-    const handleLogin = () => {
-        dispatch({
-            type: "LOGIN"
-        })
-        onClose()
+      window.location.reload(false);
     }
+
     const handleCloseLogin = () => {
         dispatch({
             type: "CLOSELOGIN"
@@ -83,22 +80,21 @@ function ModalLogin({open, onClose}) {
             setMessage(response.data.message);
 
             setAuthToken(response.data.data.user.token);
-
+ 
             dispatch({
-                type: "LOGIN_SUCCESS",
-                payload: response.data.data.user
-            });
+              type: "USER_SUCCESS",
+              payload: response.data.data.user,
+            });            
 
             refreshPage();
-            setIsLoading(false);
-
-            //loadUser();
-
-            //router.push('/home-transaction');
 
             onClose();
 
-            // router.push("/");
+            if(response.data.data.user.id === 1){
+                router.push("/home-transaction")
+            }
+           
+            // setForm(initialState);
 
         } catch (error) {
             console.log(error);

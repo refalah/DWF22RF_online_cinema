@@ -1,14 +1,16 @@
 import React, {useContext, useEffect, useState} from 'react'
-import { useHistory } from "react-router-dom";
+import { useHistory, Redirect } from "react-router-dom";
 import Hero from '../../components/Hero/Hero';
 import Card from '../../components/Card/Card';
 import HomeTransaction from '../HomeTransaction/HomeTransaction';
 import {API} from '../../config/api';
 import LoadingPage from '../LoadingPage';
+import { Context } from '../../context/context';
 
 function Home() {
 
     const router = useHistory();
+    const [state] = useContext(Context);
 
     const [ films, setFilms ]= useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +39,6 @@ function Home() {
     }
 
     useEffect(() => {
-        loadUser();
         loadFilms();
         // setIsLoading(true);
         // setTimeout(() => {
@@ -45,15 +46,20 @@ function Home() {
         // }, 1000)
     }, []);
 
+    useEffect(() => {
+        if (state.user?.id === 1) {
+          router.push("/home-transaction");
+        }
+      }, [state.user]);
+
     return (
         <>
+        
             {/* {isLoading ? <LoadingPage /> : 
             <div> */}
-                {user&&user.id === 1 ? (
-                    <div>
-                        <HomeTransaction />
-                    </div>
-                ) : (
+                {/* {user&&user.id === 1 ? (
+                    <Redirect to="/home-transaction"/>
+                ) : ( */}
                     <div className="container mt-5">
                         <Hero />
                         <div className='card '>
@@ -69,7 +75,7 @@ function Home() {
                         </div>
                         </div>
                     </div>   
-                )}
+                {/* )} */}
             {/* </div>
             } */}
         </>

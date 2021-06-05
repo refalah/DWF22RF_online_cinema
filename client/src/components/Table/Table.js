@@ -67,7 +67,7 @@ function NewTable({transactions, loadPayment}) {
                             <img  src='/Polygon.svg'/>
                          </div>
                          
-                           <div class="dropdown-content " style={{width: 100}}>
+                           <div class="dropdown-contents " style={{width: 100}}>
                            <a href="#" style={{color:'#0ACF83'}} onClick={() => handleApprove(transaction.id)}>Approve</a>
                            <a href="#" style={{color:'red'}} onClick={() => handleCancel(transaction.id)}>Cancel</a>
                            </div>

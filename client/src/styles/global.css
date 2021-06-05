@@ -252,6 +252,10 @@ body {
     /* margin-top: 1rem; */
 }
 
+.modal-sample-content h1 {
+    color: #CD2E71;
+}
+
 .modal-header {
     display: flex;
     flex-direction: column;
@@ -314,6 +318,10 @@ input {
     position: relative;
     display: inline-block;
   }
+  .dropdowns {
+    position: relative;
+    display: inline-block;
+  }
 
 .dropdown-one {
     display: flex;
@@ -330,6 +338,7 @@ input {
     right: 0;
     border-radius: 10px;
     box-shadow: 4px 4px 20px 0px #00000040;
+    margin-top: 20px;
   }
   
 .drop-item {
@@ -351,6 +360,7 @@ input {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    
   }
 
   .dropdown-content img {
@@ -363,11 +373,13 @@ input {
 .dropdown-content a:hover {
     background-color: #202020;
     border-radius: 10px;
+    
 }
   
   /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {
     display: block;
+    
   }
   
   /* Change the background color of the dropdown button when the dropdown content is shown */
@@ -375,14 +387,79 @@ input {
     background-color: #9e2658;
 }
 
+.dropdown-content::after {
+    position: absolute;
+    top: -17%;
+    left: 125%;
+    margin-left: -57%;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: solid 25px #0D0D0D;
+    border-left: solid 25px transparent;
+    border-right: solid 25px transparent;
+}
+
+.dropdown-contents::after {
+    position: absolute;
+    top: -17%;
+    left: 125%;
+    margin-left: -60%;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: solid 15px #0D0D0D;
+    border-left: solid 15px transparent;
+    border-right: solid 15px transparent;
+}
+
+.dropdown-contents {
+    display: none;
+    position: absolute;
+    background-color: #0D0D0D;
+    width: 170px;
+    z-index: 1;
+    right: 0;
+    border-radius: 10px;
+    box-shadow: 4px 4px 20px 0px #00000040;
+    margin-top: 20px;
+    left: -72px;
+  }
+  
+
+
+  /* Links inside the dropdown */
+  .dropdown-contents a {
+    color: white;
+    padding: 12px 15px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+
+  
+  /* Change color of dropdown links on hover */
+.dropdown-contents a:hover {
+    background-color: #202020;
+    border-radius: 10px;
+    
+}
+  
+  /* Show the dropdown menu on hover */
+  .dropdown:hover .dropdown-contents {
+    display: block;
+    
+  }
+
 /* Cards */
 
 .cards {
-    width: 290px;
-    height: 476px;
+    width: 220px;
+    height: 320px;
     overflow: hidden;
     transition: 0.3s;
-    background: white;
 }
 
 .cards:hover {
@@ -391,21 +468,23 @@ input {
 }
 
 .card-image-container img{
-    overflow: hidden;
-    object-fit: cover;
-    width: 290px;
-    height: 476px;
+    object-fit: contain;
+    width: 100%;
+    /* height: 100%; */
+    /* width: 180px;
+    height: 250px; */
 }
 
 .row {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: left;
 }
 
 .col {    
     margin-bottom: 5%;
+    margin: 0 12px;
 }
 
 .film-header {
@@ -473,9 +552,15 @@ input {
     align-items: flex-start;    
 }
 
+.poster-container {
+    width: 350px;
+}
+
 .film-container img {
-    max-height: 600px;
-    max-width: 350px;
+    /* max-height: 600px; */
+    object-fit: contain;
+    height: 500px;
+    width: 100%;
 }
 
 
@@ -642,14 +727,24 @@ input {
     justify-content: space-around;
     align-items: center;
     text-decoration: none;
-    width: 177px;
+    width: 127px;
     height: 40px;
     border-radius: 10px;
     font-size: 14px;
     font-weight: 900;
-    background-color: #fff;
-    color: #C32424;
+    /* background-color: #fff;
+    color: #C32424; */
     cursor: pointer;
+    background: #CD2E71;
+    color: white;
+    /* height: 40px;
+    align-items: center;    
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    flex: 2;
+    padding: 0 5px;
+    font-size: 14px; */
 }
 
 #customers {
@@ -687,6 +782,9 @@ input {
   }
 
 /* Add Film Page */
+input {
+    background-color: white;
+}
 
 form input{
     width: 100%;
@@ -694,6 +792,7 @@ form input{
     padding: 10px;
     border-radius: 5px;    
     background: #D2D2D240;
+    color: #B1B1B1;
     border: 1px solid whitesmoke;
 }
 
@@ -722,6 +821,7 @@ form input{
     padding: 10px;
     border-radius: 5px;    
     background: #D2D2D240;
+    color: #B1B1B1;
     border: 1px solid whitesmoke;
 }
 

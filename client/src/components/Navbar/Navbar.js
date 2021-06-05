@@ -105,7 +105,7 @@ function Navbar() {
                               <div class="dropdown-content">
                                 {user&&user.id === 1 ? (
                                     <>
-                                        <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
+                                        <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1, marginTop: 7}}>
                                             <a href="#" onClick={() => router.push('/add-film')}><img src='/film.svg'/>Add Film</a>
                                         </div>
                                         <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
