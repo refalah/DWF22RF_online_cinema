@@ -28,6 +28,7 @@ function FilmDetails() {
 
     const [film, setFilm] = useState([]);
     const [purchase, setPurchase] = useState([]);
+    const [wish, setWish] = useState([]);
 
     const handleOpenBuy = () => {
         dispatch({
@@ -66,6 +67,33 @@ function FilmDetails() {
         }
     }
 
+    const loadWishes = async () => {
+        try {
+            const response = await API.get(`/get-wishes/${id}`);
+            setWish(response.data.data.wishes);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const addWish = async () => {
+        try {
+            await API.post(`/add-wishlist/${id}`);
+            loadWishes();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const toggleWish = async (id) => {
+        try {
+            await API.delete(`/toggle-wishlist/${id}`);
+            loadWishes();
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const loading = () => {
         //setIsLoading(true);
         setTimeout(() => {
@@ -76,29 +104,28 @@ function FilmDetails() {
     useEffect(() => {
         loadFilm();
         loadPurchases();
+        loadWishes();
         setIsLoading(false);
-        // setTimeout(() => {
-        //     setIsLoading(false);
-        // }, 1000)
     }, []);
 
     if (film == null) {
         return <Redirect to="/404"/>
     }
    
-
+    
     const image_url = `http://localhost:5000/uploads/${film.thumbnail}`
    
-    // const vid = film.link;
-    // console.log(vid)
-    
-
     return (
         <div>
             <div className='container'>
                 <div className='film-container'>
                     <div className='poster-container'>
-                        <img src={image_url} className='film-image' style={{flex: 1}}></img> 
+                        <img src={image_url} className='film-image' style={{flex: 1}}></img>
+                        {!wish ? (
+                            <button className='btn-pink' onClick={() => addWish()}>Add to Wishlist</button>
+                        ) : (
+                            <button className='btn-pink' onClick={() => toggleWish(wish.id)}>Remove from Wishlist</button>
+                        )}
                     </div>
                                
                     <div className='detail-container' style={{flex: 5}}>

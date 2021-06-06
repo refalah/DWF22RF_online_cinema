@@ -103,6 +103,10 @@ body {
     cursor: pointer;
 }
 
+.pink-wish {
+    filter: invert(30%) sepia(99%) saturate(1038%) hue-rotate(301deg) brightness(86%) contrast(103%);
+}
+
 #basic-nav-dropdown {
     position: relative;
     inset: 0px auto auto 0px;
@@ -389,7 +393,7 @@ input {
 
 .dropdown-content::after {
     position: absolute;
-    top: -17%;
+    top: -12%;
     left: 125%;
     margin-left: -57%;
     content: "";
@@ -402,15 +406,28 @@ input {
 
 .dropdown-contents::after {
     position: absolute;
-    top: -17%;
+    top: -19%;
     left: 125%;
-    margin-left: -60%;
+    margin-left: -65%;
     content: "";
     width: 0;
     height: 0;
-    border-bottom: solid 15px #0D0D0D;
-    border-left: solid 15px transparent;
-    border-right: solid 15px transparent;
+    border-bottom: solid 20px #0D0D0D;
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
+}
+
+.alt-nav::after {
+    position: absolute;
+    top: -19%;
+    left: 125%;
+    margin-left: -65%;
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: solid 20px #0D0D0D;
+    border-left: solid 20px transparent;
+    border-right: solid 20px transparent;
 }
 
 .dropdown-contents {
@@ -845,14 +862,42 @@ form input{
 
 .wishlist {
     width: 100%;
-    height: 70px;
-    background-color: #616161;
+    height: 200px;
+    background-color: #cd2e7069;
     color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
 }
 
 .wishlist-content {
     display: flex;
-    flex-direction: row;
-    padding: 10px;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
+.wishlist-content img {
+    width: 100px;
+    height: 160px;
+    display: flex;
+    align-items: center;
+}
+
+.wishlist-details {
+}
+
+.btn-pink {
+    background: #CD2E71;
+    color: white;
+    padding: 5px 20px;
+    border-style: none;
+    border-radius: 5px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 30px;
+}

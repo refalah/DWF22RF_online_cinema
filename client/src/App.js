@@ -24,7 +24,6 @@ if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
-
 function App() {   
   
     const [, dispatch] = useContext(Context);

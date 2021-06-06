@@ -32,4 +32,10 @@ router.get("/transactions", getTransactions);
 router.patch("/approve/:id", approvePurchase);
 router.patch("/cancel/:id", cancelPurchase);
 
+const { createWishlist, toggleWishlist, getWishes, getMyWishes } = require('../controllers/wishlist');
+router.post("/add-wishlist/:id2", authToken, createWishlist);
+router.delete("/toggle-wishlist/:id", toggleWishlist);
+router.get("/get-wishes/:id2", authToken, getWishes);
+router.get("/my-wishlist/:id", authToken, getMyWishes);
+
 module.exports = router;

@@ -105,7 +105,7 @@ function Navbar() {
                               <div class="dropdown-content">
                                 {user&&user.id === 1 ? (
                                     <>
-                                        <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1, marginTop: 7}}>
+                                        <div className='' style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1, marginTop: 15}}>
                                             <a href="#" onClick={() => router.push('/add-film')}><img src='/film.svg'/>Add Film</a>
                                         </div>
                                         <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
@@ -115,13 +115,12 @@ function Navbar() {
                                         <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
                                             <a href="#" onClick={() => router.push('/profile')}><img src='/user2.svg'/>Profile</a>
                                             <a href="#" onClick={() => router.push('/my-films')}><img src='clapperboard.svg'/>My Film List</a>
-                                            <a href="#" onClick={() => router.push('/wishlist')}><img src='clapperboard.svg'/>Wishlist</a>
+                                            <a href="#" onClick={() => router.push('/wishlist')}><img src='wishlist.svg' className='pink-wish'/>Wishlist</a>
                                         </div>                                        
                                         <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
                                     </>
                                 )}
-                               
-                                        
+                                
                               </div>
                             </div>
                                 
