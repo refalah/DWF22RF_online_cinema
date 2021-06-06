@@ -115,6 +115,7 @@ function Navbar() {
                                         <div style={{borderBottom: 1, borderBottomStyle: 'solid', borderWidth: 1}}>
                                             <a href="#" onClick={() => router.push('/profile')}><img src='/user2.svg'/>Profile</a>
                                             <a href="#" onClick={() => router.push('/my-films')}><img src='clapperboard.svg'/>My Film List</a>
+                                            <a href="#" onClick={() => router.push('/wishlist')}><img src='clapperboard.svg'/>Wishlist</a>
                                         </div>                                        
                                         <a href="#" onClick={handleLogout}><img src='/logout.svg'/>Logout</a>
                                     </>

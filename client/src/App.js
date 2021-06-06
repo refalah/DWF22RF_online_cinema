@@ -18,6 +18,7 @@ import MyFilms from './pages/MyFilms/MyFilms';
 import EditProfile from './pages/EditProfile/EditProfile';
 import LoadingPage from './pages/LoadingPage';
 import NotFound from './pages/NotFound';
+import Wishlist from './pages/Wishlist/Wishlist';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -74,6 +75,7 @@ function App() {
           <PrivateRoute path='/profile' exact component={Profile}></PrivateRoute>
           <PrivateRoute path='/edit-profile' exact component={EditProfile}></PrivateRoute>
           <PrivateRoute path='/my-films' exact component={MyFilms}></PrivateRoute>
+          <PrivateRoute path='/wishlist' exact component={Wishlist}></PrivateRoute>
           <PrivateRoute path='/home-transaction' exact component={HomeTransaction}></PrivateRoute>
           <Route path="/404" component={NotFound}></Route>
           <Redirect to="/404"></Redirect>
