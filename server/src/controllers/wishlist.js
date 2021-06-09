@@ -1,14 +1,13 @@
 const {User, Film, Wishlist, Sequelize} = require('../../models');
 
 exports.createWishlist = async (req,res) => {
-    const {exist} = req.body;
+    
+  const id = req.userId;
+  const id2 = req.params.id2;
 
     try {
-        const id = req.userId;
-        const id2 = req.params.id2;
 
         const wish = await Wishlist.create({userId: id, filmId: id2, exist: true});
-
         return res.json(wish);
         
     } catch (error) {
@@ -21,13 +20,13 @@ exports.createWishlist = async (req,res) => {
 }
 
 exports.toggleWishlist = async (req,res) => {
-    //const id = req.userId;
-    const id = req.params.id;
+   
+  const id = req.params.id;
 
     try {
-        const wish = await Wishlist.destroy({where: {id}});
-
-        return res.json(wish);
+      const wish = await Wishlist.destroy({where: {id}});
+      return res.json(wish);
+        
     } catch (error) {
         console.log(error)
     }

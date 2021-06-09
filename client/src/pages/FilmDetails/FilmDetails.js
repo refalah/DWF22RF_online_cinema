@@ -126,6 +126,7 @@ function FilmDetails() {
                         ) : (
                             <button className='btn-pink' onClick={() => toggleWish(wish.id)}>Remove from Wishlist</button>
                         )}
+                        
                     </div>
                                
                     <div className='detail-container' style={{flex: 5}}>

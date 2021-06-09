@@ -9,7 +9,7 @@ function Wishlist() {
 
     const loadWishes = async () => {
         try {
-            const response = await API.get(`/my-wishlist/${id}`);
+            const response = await API.get(`/my-wishlist/`);
             setWish(response.data.data.wishes)
         } catch (error) {
             console.log(error);
@@ -23,8 +23,9 @@ function Wishlist() {
         <div>
             <div className='container'>
                 <h1>Wishlist</h1>
+
                 {wish&&wish.map(w => (
-                    <CardWishlist wishlist = {w}></CardWishlist>
+                    <CardWishlist wishlist = {w}/>
                 ))}
                 
             </div>

@@ -36,6 +36,6 @@ const { createWishlist, toggleWishlist, getWishes, getMyWishes } = require('../c
 router.post("/add-wishlist/:id2", authToken, createWishlist);
 router.delete("/toggle-wishlist/:id", toggleWishlist);
 router.get("/get-wishes/:id2", authToken, getWishes);
-router.get("/my-wishlist/:id", authToken, getMyWishes);
+router.get("/my-wishlist/", authToken, getMyWishes);
 
 module.exports = router;
